@@ -1,7 +1,11 @@
-// const router = require('express').Router();
-// // const pacienteController = require('../controllers/pacienteController')
+const { login } = require('../controllers/usuarioController');
 
-// router.route('/')
-//     .get(pacienteController.get)
+const router = require('express').Router();
+usuarioController = require('../controllers/usuarioController')
 
-// module.exports = router
+router.route('/register')
+    .post(usuarioController.create)
+router.route('/login')
+    .post(usuarioController.login)
+
+module.exports = router

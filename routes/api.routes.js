@@ -1,6 +1,6 @@
 const express = require('express');
 const pacienteRoutes = require('./pacientes.routes')
-// const usuarioRoutes = require('./usuario.routes')
+const usuarioRoutes = require('./usuario.routes')
 // const historiaRoutes = require('./historia.routes')
 // const notasRoutes = require('./notas.routes')
 // const conceptualizacionRoutes = require('./conceptualizacion.routes')
@@ -15,7 +15,7 @@ app.use('/pacientes', pacienteRoutes);
 // app.use('/pacientes/:id/conceptualizacion', conceptualizacionRoutes);
 // app.use('/pacientes/:id/compartido', compartidoRoutes);
 
-// app.use('/usuario', usuarioRoutes);
+app.use('/usuario', usuarioRoutes);
 // app.use('/tarea', tareaRoutes);
 
 // app.use('/compartido', courseRoutes);

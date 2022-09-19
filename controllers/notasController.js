@@ -16,5 +16,23 @@ const get = (req, res) => {
     });
    });
 }
+
+const create = (req, res) => {
+    if (req.body && Object.keys(req.body).length > 0){
+        let nota = new Notas(req.body);
+        nota.save().then(() => {
+            res.status(201).json({
+                message: "Nota created successfully",
+                data: nota,
+            });
+        })
+        .catch((err) => {
+            res.status(500).json({
+                message: "Internal server error while saving",
+                error: err
+            })
+        })
+    } else return res.status(400).json({ message: "Nota not received"})
+}
 // Revisar Documentacion Moongose
-module.exports = {get}
+module.exports = {get, create}

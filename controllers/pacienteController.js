@@ -16,5 +16,34 @@ const get = (req, res) => {
     });
    });
 }
+
+const post = (req, res) => {
+    
+}
+
+const create = (req, res) => {
+    if (req.body && Object.keys(req.body).length > 0){
+        let paciente = new Paciente(req.body);
+        paciente.save().then(() => {
+            res.status(201).json({
+                message: "Paciente created successfully",
+                data: paciente,
+            });
+        })
+        .catch((err) => {
+            res.status(500).json({
+                message: "Internal server error while saving",
+                error: err
+            })
+        })
+    } else return res.status(400).json({ message: "Paciente not received"})
+}
+
+const update = (req, res) => {
+    if(req.body && Object.keys(req.body).length > 0){
+
+    } else return res.status(400).json({ message: "No updates received"})
+}
+
 // Revisar Documentacion Moongose
-module.exports = {get}
+module.exports = {get, create}
