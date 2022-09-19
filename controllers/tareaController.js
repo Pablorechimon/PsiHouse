@@ -32,7 +32,31 @@ const create = (req, res) => {
                 error: err
             })
         })
-    } else return res.status(400).json({ message: "Paciente not received"})
+    } else return res.status(400).json({ message: "Tarea not received"})
+}
+
+const editTask = (req, res) => {
+    Tarea.findById(req.body._id).then((tarea) => {
+        Object.assign(tarea, req.body);
+        tarea.save().then(() => {
+            res.status(200).json({
+                message: "Tarea updated successfully",
+                data: tarea
+            });
+        })
+        .catch((err) => {
+            return res.status(500).json({
+                message: "Internal Server error while saving",
+                error: err
+            })
+        });
+    })
+    .catch((err) => {
+        return res.status(500).json({
+            message: "Internal Server error while saving",
+            error: err
+        })
+    })
 }
 // Revisar Documentacion Moongose
-module.exports = {get, create}
+module.exports = {get, create, editTask}

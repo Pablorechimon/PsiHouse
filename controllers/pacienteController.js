@@ -1,3 +1,4 @@
+const { query } = require("express");
 const Paciente = require("../models/paciente.model")
 
 const get = (req, res) => {
@@ -17,8 +18,20 @@ const get = (req, res) => {
    });
 }
 
-const post = (req, res) => {
-    
+const getPaciente = (req, res) => {
+    let id = req.params.id
+        Paciente.findById(id).then((paciente) => {
+            res.status(200).json({
+                message: 'Paciente ' + id + ' retreived successfully',
+                data: paciente
+            });
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "Internal server error while finding paciente",
+                error: err
+            });
+        });
 }
 
 const create = (req, res) => {
@@ -46,4 +59,4 @@ const update = (req, res) => {
 }
 
 // Revisar Documentacion Moongose
-module.exports = {get, create}
+module.exports = {get, getPaciente,  create}

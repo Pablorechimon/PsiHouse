@@ -4,7 +4,10 @@ const get = (req, res) => {
     /*
     Ver tema de Swager
     */
-   Notas.find().then((notas) => {
+   let id = req.params.id
+   Notas.find({
+        'id_paciente' : id
+   }).then((notas) => {
     res.status(200).json({
         message: 'Notas retrieved successfully',
         data: notas,
@@ -19,7 +22,11 @@ const get = (req, res) => {
 
 const create = (req, res) => {
     if (req.body && Object.keys(req.body).length > 0){
-        let nota = new Notas(req.body);
+        let nota = new Notas({
+            // Ver con Nachito si esto es un approach correcto.
+            'id_paciente' : req.params.id,
+            'nota': req.body.nota
+        });
         nota.save().then(() => {
             res.status(201).json({
                 message: "Nota created successfully",
@@ -34,5 +41,30 @@ const create = (req, res) => {
         })
     } else return res.status(400).json({ message: "Nota not received"})
 }
+
+const editNota = (req, res) => {
+    Notas.findById(req.body._id).then((nota) => {
+        Object.assign(nota, req.body);
+        nota.save().then(() => {
+            res.status(200).json({
+                message: "Nota updated successfully",
+                data: nota
+            });
+        })
+        .catch((err) => {
+            return res.status(500).json({
+                message: "Internal Server error while saving",
+                error: err
+            })
+        });
+    })
+    .catch((err) => {
+        return res.status(500).json({
+            message: "Missing nota id",
+            error: err
+        })
+    })
+}
+
 // Revisar Documentacion Moongose
-module.exports = {get, create}
+module.exports = {get, create, editNota}

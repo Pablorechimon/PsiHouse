@@ -8,4 +8,4 @@ const ConceptualizacionSchema = Schema({
     conceptualizacion: String
 })
 
-module.exports = mongoose.model("conceptualizacion", ConceptualizacionSchema)
+module.exports = mongoose.model("conceptualizaciones", ConceptualizacionSchema)

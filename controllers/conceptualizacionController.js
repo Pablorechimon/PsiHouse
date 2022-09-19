@@ -4,7 +4,10 @@ const get = (req, res) => {
     /*
     Ver tema de Swager
     */
-   Conceptualizacion.find().then((conceptualizacion) => {
+    let id = req.params.id
+    Conceptualizacion.find({
+        'id_paciente' : id
+   }).then((conceptualizacion) => {
     res.status(200).json({
         message: 'Conceptualizacion retrieved successfully',
         data: conceptualizacion,
@@ -32,7 +35,31 @@ const create = (req, res) => {
                 error: err
             })
         })
-    } else return res.status(400).json({ message: "Paciente not received"})
+    } else return res.status(400).json({ message: "Conceptualizacion not received"})
+}
+
+const editConceptualizacion = (req, res) => {
+    Conceptualizacion.findById(req.body._id).then((conceptualizacion) => {
+        Object.assign(conceptualizacion, req.body);
+        conceptualizacion.save().then(() => {
+            res.status(200).json({
+                message: "Conceptualizacion updated successfully",
+                data: conceptualizacion
+            });
+        })
+        .catch((err) => {
+            return res.status(500).json({
+                message: "Internal Server error while saving",
+                error: err
+            })
+        });
+    })
+    .catch((err) => {
+        return res.status(500).json({
+            message: "Internal Server error while saving",
+            error: err
+        })
+    })
 }
 // Revisar Documentacion Moongose
-module.exports = {get}
+module.exports = {get, create, editConceptualizacion}
