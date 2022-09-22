@@ -22,7 +22,10 @@ const get = (req, res) => {
 
 const create = (req, res) => {
     if (req.body && Object.keys(req.body).length > 0){
-        let compartido = new Compartido(req.body);
+        let compartido = new Compartido({
+            'id_paciente' : req.params.id,
+            ...req.body
+        });
         compartido.save().then(() => {
             res.status(201).json({
                 message: "Compartido created successfully",

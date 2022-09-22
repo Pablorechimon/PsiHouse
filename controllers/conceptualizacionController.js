@@ -22,7 +22,10 @@ const get = (req, res) => {
 
 const create = (req, res) => {
     if (req.body && Object.keys(req.body).length > 0){
-        let conceptualizacion = new Conceptualizacion(req.body);
+        let conceptualizacion = new Conceptualizacion({
+            'id_paciente' : req.params.id,
+            ...req.body
+        });
         conceptualizacion.save().then(() => {
             res.status(201).json({
                 message: "Conceptualizacion created successfully",

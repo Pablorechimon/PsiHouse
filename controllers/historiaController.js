@@ -24,7 +24,7 @@ const create = (req, res) => {
     if (req.body && Object.keys(req.body).length > 0){
         let historia = new Historias({
             'id_paciente' : req.params.id,
-            'historia': req.body.historia
+            ...req.body
         });
         historia.save().then(() => {
             res.status(201).json({

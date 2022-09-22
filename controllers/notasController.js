@@ -25,7 +25,7 @@ const create = (req, res) => {
         let nota = new Notas({
             // Ver con Nachito si esto es un approach correcto.
             'id_paciente' : req.params.id,
-            'nota': req.body.nota
+            ...req.body
         });
         nota.save().then(() => {
             res.status(201).json({

@@ -9,4 +9,4 @@ const TareaSchema = Schema({
     finalizado: {type: Boolean, default: false},
 })
 
-module.exports = mongoose.model("tarea", TareaSchema)
+module.exports = mongoose.model("tareas", TareaSchema)

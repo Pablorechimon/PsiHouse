@@ -17,8 +17,6 @@ const PacienteSchema = Schema({
     derivante: String,
     motivo_de_consulta: String,
     valor_consulta: Number,
-    estado_deuda: Boolean,
-    valor_deuda: Number,
     antecedentes_psiquiatricos_personales: String,
     antecedentes_psiquiatricos_familiares: String,
     tratamiento_en_curso: String,
@@ -26,12 +24,8 @@ const PacienteSchema = Schema({
     riesgo_suicida: Boolean,
     tratamiento_previo: String,
     consumo_sustancias: String,
-    informacion_compartida: [{type: Schema.Types.ObjectId, ref: 'compartido'}],
-    historia_clinica: [{type: Schema.Types.ObjectId, ref: 'historia'}],
-    notas: [{type: Schema.Types.ObjectId, ref: 'notas'}],
-    conceptualizacion: [{type: Schema.Types.ObjectId, ref: 'conceptualizacion'}],
     tratamiento_finalizado: Boolean
     // courses: [{type: Schema.Types.ObjectId, ref: 'course'}]
 });
 
-module.exports = mongoose.model("paciente", PacienteSchema);
+module.exports = mongoose.model("pacientes", PacienteSchema);

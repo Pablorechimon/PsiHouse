@@ -9,9 +9,8 @@ const RecursoSchema = Schema ({
 })
 
 const CompartidoSchema = Schema({
-    id_compartido: String,
-    id_paciente: String,
-    recurso: [RecursoSchema],
+    id_paciente: {type: Schema.Types.ObjectId, ref: 'pacientes'},
+    recurso: RecursoSchema,
 })
 
 module.exports = mongoose.model("compartido", CompartidoSchema)
