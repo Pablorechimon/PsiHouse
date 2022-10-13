@@ -1,0 +1,2 @@
+npm install body-parser mongodb mongoose express cors dotenv
+npm install --save-dev nodemon
