@@ -52,11 +52,30 @@ const create = (req, res) => {
     } else return res.status(400).json({ message: "Paciente not received"})
 }
 
-const update = (req, res) => {
-    if(req.body && Object.keys(req.body).length > 0){
-
-    } else return res.status(400).json({ message: "No updates received"})
+const editPaciente = (req, res) => {
+    id = req.params.id
+    Paciente.findById(id).then((paciente) => {
+        Object.assign(paciente, req.body);
+        paciente.save().then(() => {
+            res.status(200).json({
+                message: "Paciente updated successfully",
+                data: paciente
+            });
+        })
+        .catch((err) => {
+            return res.status(500).json({
+                message: "Internal Server error while saving",
+                error: err
+            })
+        });
+    })
+    .catch((err) => {
+        return res.status(500).json({
+            message: "Missing Paciente id",
+            error: err
+        })
+    })
 }
 
 // Revisar Documentacion Moongose
-module.exports = {get, getPaciente,  create}
+module.exports = {get, getPaciente,  create, editPaciente}
