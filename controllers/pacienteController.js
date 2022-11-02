@@ -34,22 +34,30 @@ const getPaciente = (req, res) => {
         });
 }
 
-const create = (req, res) => {
-    if (req.body && Object.keys(req.body).length > 0){
-        let paciente = new Paciente(req.body);
-        paciente.save().then(() => {
-            res.status(201).json({
-                message: "Paciente created successfully",
-                data: paciente,
-            });
-        })
-        .catch((err) => {
-            res.status(500).json({
-                message: "Internal server error while saving",
-                error: err
+const create = async (req, res) => {
+    const query = Paciente.findOne({
+        "DNI" : req.body.DNI
+    });
+    const queryResponse = await query.exec();
+    if (!queryResponse) {
+        if (req.body && Object.keys(req.body).length > 0){
+            let paciente = new Paciente(req.body);
+            res.status(200)
+            paciente.save().then(() => {
+                res.status(201).json({
+                    message: "Paciente created successfully",
+                    data: paciente,
+                });
             })
-        })
-    } else return res.status(400).json({ message: "Paciente not received"})
+            .catch((err) => {
+                res.status(500).json({
+                    message: "Error while creating paciente",
+                    error: err
+                })
+            })
+        } else return res.status(400).json({ message: "Paciente not received"})
+    } else return res.status(501).json({ message: "Paciente already exists"})
+
 }
 
 const editPaciente = (req, res) => {

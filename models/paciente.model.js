@@ -3,13 +3,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PacienteSchema = Schema({
+    id_usuario: {type: Schema.Types.ObjectId, ref: 'usuarios'},
+    DNI: String,
     nombre: String,
     apellido: String,
     fecha_nacimiento: Date,
     fecha_inicio_tramite: { type: Date, default: Date.now },
-    DNI: Number,
     email: String,
-    telelefono_personal: String,
+    telefono_personal: String,
     telefono_tercero: String,
     localidad: String,
     personas_convivientes: String,
@@ -25,7 +26,6 @@ const PacienteSchema = Schema({
     tratamiento_previo: String,
     consumo_sustancias: String,
     tratamiento_finalizado: Boolean
-    // courses: [{type: Schema.Types.ObjectId, ref: 'course'}]
 });
 
 module.exports = mongoose.model("pacientes", PacienteSchema);
