@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const tareaController = require('../controllers/tareaController')
 
-router.route('/')
+router.route('/usuario/:id')
     .get(tareaController.get)
 router.route('/')
     .post(tareaController.create)

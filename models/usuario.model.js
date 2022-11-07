@@ -4,12 +4,10 @@ const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
 
 const UsuarioSchema = Schema({
-    nick: String,
+    nick: {type: String, unique: true},
     nombre: String,
     apellido: String,
     password: String,
-    tareas: [{type: Schema.Types.ObjectId, ref: 'tarea'}],
-    pacientes: [{type: Schema.Types.ObjectId, ref: 'paciente'}],
 })
 
 UsuarioSchema.methods.encryptPassword = async (password) => {
@@ -21,4 +19,4 @@ UsuarioSchema.methods.validatePassword = function (password) {
     return bcrypt.compare(password, this.password);
 };
 
-module.exports = mongoose.model("usuario", UsuarioSchema)
+module.exports = mongoose.model("usuarios", UsuarioSchema)

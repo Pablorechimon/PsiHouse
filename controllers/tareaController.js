@@ -4,7 +4,15 @@ const get = async (req, res) => {
     /*
     Ver tema de Swager
     */
-   Tarea.find().then((tarea) => {
+    let id_usuario = req.params.id
+   const query = Tarea.find({
+    "id_usuario" : id_usuario
+    });
+    const queryResponse = await query.exec();
+    console.log(queryResponse)
+   Tarea.find({
+    "id_usuario" : id_usuario
+    }).then((tarea) => {
     return res.status(200).json({
         message: 'Tarea retrieved successfully',
         data: tarea
