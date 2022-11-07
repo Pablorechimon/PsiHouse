@@ -1,31 +1,45 @@
 const { json } = require("body-parser")
 const Pagos = require("../models/pagos.model")
+const mongoose = require('mongoose');
 
-const get = (req, res) => {
+const get = async (req, res) => {
     /*
     Ver tema de Swager
     */
-   // Entregar un listado de deduda por paciente
-    Pagos.aggregate([
-        {
-            $group:{
-                _id:{id_paciente:"$id_paciente"}, 
-                deuda: {$sum: { $subtract: ["$precio_consulta", "$monto_abonado"]}},
+    let id_usuario = req.params.id
+    const query = Pagos.find({
+     "id_usuario" : id_usuario
+     });
+     const queryResponse = await query.exec();
+     let ids = mongoose.Types.ObjectId(id_usuario)
+     console.log(ids)
+    if(queryResponse){
+        Pagos.aggregate([
+            {
+                $match: {
+                    'id_usuario': ids
+                }
+            },
+            {
+                $group:{
+                    _id:{id_paciente:"$id_paciente"}, 
+                    deuda: {$sum: { $subtract: ["$precio_consulta", "$monto_abonado"]}},
+                }
             }
-        }
-    ])
-    .then(data => {
-        res.status(200).json({
-            message: "Pagos retrieved successfully",
-            data: data
+        ])
+        .then(data => {
+            res.status(200).json({
+                message: "Pagos retrieved successfully",
+                data: data
+            })
         })
-    })
-    .catch((err) => {
-            res.status(500).json({
-                message: "Internal Server Error while finding pagos",
-                error: err
+        .catch((err) => {
+                res.status(500).json({
+                    message: "Internal Server Error while finding pagos",
+                    error: err
+            })
         })
-    })
+    }
 }
 
 const getPagosPaciente = (req, res) => {

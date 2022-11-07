@@ -2,7 +2,7 @@ const router = require('express').Router();
 const pacienteController = require('../controllers/pacienteController')
 const pagoController = require('../controllers/pagoController')
 
-router.route('/')
+router.route('/usuario/:id')
     .get(pacienteController.get)
 router.route('/')
     .post(pacienteController.create)

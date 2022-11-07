@@ -1,21 +1,31 @@
 const { query } = require("express");
 const Paciente = require("../models/paciente.model")
 
-const get = (req, res) => {
+const get = async (req, res) => {
     /*
     Ver tema de Swager
     */
-   Paciente.find().then((pacientes) => {
-    res.status(200).json({
-        message: 'Pacientes retrieved successfully',
-        data: pacientes,
+   let id_usuario = req.params.id
+   const query = Paciente.find({
+    "id_usuario" : id_usuario
     });
-   }).catch((err) => {
-    res.status(500).json({
-        message: "Internal Server Error while finding pacientes",
-        error: err
-    });
-   });
+    const queryResponse = await query.exec();
+    console.log(queryResponse)
+   if (queryResponse){
+    Paciente.find({
+        "id_usuario" : id_usuario
+        }).then((pacientes) => {
+        res.status(200).json({
+            message: 'Pacientes retrieved successfully',
+            data: pacientes,
+        });
+       }).catch((err) => {
+        res.status(500).json({
+            message: "Internal Server Error while finding pacientes",
+            error: err
+        });
+       });
+   } else return res.status(201).json({ message: "No users"})
 }
 
 const getPaciente = (req, res) => {
