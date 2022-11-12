@@ -12,7 +12,6 @@ const get = async (req, res) => {
      });
      const queryResponse = await query.exec();
      let ids = mongoose.Types.ObjectId(id_usuario)
-     console.log(ids)
     if(queryResponse){
         Pagos.aggregate([
             {

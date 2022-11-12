@@ -9,7 +9,6 @@ const get = async (req, res) => {
     "id_usuario" : id_usuario
     });
     const queryResponse = await query.exec();
-    console.log(queryResponse)
    Tarea.find({
     "id_usuario" : id_usuario
     }).then((tarea) => {
@@ -19,7 +18,6 @@ const get = async (req, res) => {
     });
    })
    .catch((err) => {
-    console.log("Entre por error")
     return res.status(500).json({
         message: "Internal Server Error while finding tarea",
         error: err

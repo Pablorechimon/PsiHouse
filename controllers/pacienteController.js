@@ -10,7 +10,6 @@ const get = async (req, res) => {
     "id_usuario" : id_usuario
     });
     const queryResponse = await query.exec();
-    console.log(queryResponse)
    if (queryResponse){
     Paciente.find({
         "id_usuario" : id_usuario
