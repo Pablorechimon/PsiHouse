@@ -61,6 +61,26 @@ const getPagosPaciente = (req, res) => {
    });
 }
 
+const getPagosPaciente = (req, res) => {
+    /*
+    Ver tema de Swager
+    */
+   let id = req.params.id
+   Pagos.find({
+        'id_paciente' : id
+   }).then((notas) => {
+    res.status(200).json({
+        message: 'Pagos retrieved successfully',
+        data: notas,
+    });
+   }).catch((err) => {
+    res.status(500).json({
+        message: "Internal Server Error while finding Pagos",
+        error: err
+    });
+   });
+}
+
 const create = (req, res) => {
     if (req.body && Object.keys(req.body).length > 0){
         let pago = new Pagos({
