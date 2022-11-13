@@ -9,10 +9,11 @@ const get = (req, res) => {
         'id_paciente' : id
    }).then((notas) => {
     res.status(200).json({
-        message: 'Notas retrieved successfully',
+        message: 'Notas devueltas correctamente',
         data: notas,
     });
-   }).catch((err) => {
+   })
+   .catch((err) => {
     res.status(500).json({
         message: "Internal Server Error while finding notas",
         error: err
@@ -29,7 +30,7 @@ const create = (req, res) => {
         });
         nota.save().then(() => {
             res.status(201).json({
-                message: "Nota created successfully",
+                message: "Nota creada correctamente",
                 data: nota,
             });
         })
@@ -39,28 +40,28 @@ const create = (req, res) => {
                 error: err
             })
         })
-    } else return res.status(400).json({ message: "Nota not received"})
+    } else return res.status(501).json({ message: "Nota no recibida"})
 }
 
 const editNota = (req, res) => {
     Notas.findById(req.body._id).then((nota) => {
         Object.assign(nota, req.body);
         nota.save().then(() => {
-            res.status(200).json({
-                message: "Nota updated successfully",
+            res.status(201).json({
+                message: "Nota Editada correctamente",
                 data: nota
             });
         })
-        .catch((err) => {
-            return res.status(500).json({
-                message: "Internal Server error while saving",
-                error: err
-            })
-        });
+        // .catch((err) => {
+        //     return res.status(500).json({
+        //         message: "Internal Server error while saving",
+        //         error: err
+        //     })
+        // });
     })
     .catch((err) => {
-        return res.status(500).json({
-            message: "Missing nota id",
+        return res.status(501).json({
+            message: "Falta Nota ID",
             error: err
         })
     })
