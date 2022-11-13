@@ -28,16 +28,16 @@ const get = async (req, res) => {
         ])
         .then(data => {
             res.status(200).json({
-                message: "Pagos retrieved successfully",
+                message: "Pagos devueltos correctamente",
                 data: data
             })
         })
-        .catch((err) => {
-                res.status(500).json({
-                    message: "Internal Server Error while finding pagos",
-                    error: err
-            })
-        })
+        // .catch((err) => {
+        //         res.status(500).json({
+        //             message: "Internal Server Error while finding pagos",
+        //             error: err
+        //     })
+        // })
     }
 }
 
@@ -51,15 +51,16 @@ const getPagosPaciente = (req, res) => {
         'id_paciente' : id
    }).then((notas) => {
     res.status(200).json({
-        message: 'Pagos retrieved successfully',
+        message: 'Pagos devueltos successfully',
         data: notas,
     });
-   }).catch((err) => {
-    res.status(500).json({
-        message: "Internal Server Error while finding Pagos",
-        error: err
-    });
-   });
+   })
+//    .catch((err) => {
+//     res.status(500).json({
+//         message: "Internal Server Error while finding Pagos",
+//         error: err
+//     });
+//    });
 }
 
 const create = (req, res) => {
@@ -71,17 +72,17 @@ const create = (req, res) => {
         });
         pago.save().then(() => {
             res.status(201).json({
-                message: "Pago created successfully",
+                message: "Pago creado correctamente",
                 data: pago,
             });
         })
         .catch((err) => {
             res.status(500).json({
-                message: "Internal server error while saving",
+                message: "Datos de formulario incorrectos",
                 error: err
             })
         })
-    } else return res.status(400).json({ message: "Pago not received"})
+    } else return res.status(400).json({ message: "Pago no recibido"})
 }
 
 const editPago = (req, res) => {
@@ -89,20 +90,20 @@ const editPago = (req, res) => {
         Object.assign(pago, req.body);
         pago.save().then(() => {
             res.status(200).json({
-                message: "Pago updated successfully",
+                message: "Pago editado correctamente",
                 data: pago
             });
         })
-        .catch((err) => {
-            return res.status(500).json({
-                message: "Internal Server error while saving",
-                error: err
-            })
-        });
+        // .catch((err) => {
+        //     return res.status(500).json({
+        //         message: "Internal Server error while saving",
+        //         error: err
+        //     })
+        // });
     })
     .catch((err) => {
         return res.status(500).json({
-            message: "Missing pago id",
+            message: "Falta Pago ID",
             error: err
         })
     })

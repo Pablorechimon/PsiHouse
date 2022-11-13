@@ -12,18 +12,18 @@ const create = async (req, res) => {
                 expiresIn: 60 * 60 * 24
             })
             res.status(201).json({
-                messege: "User created succesfully",
+                message: "User created succesfully",
                 data: usuario,
                 token: token
             });
         })
         .catch((err) => {
             res.status(500).json({
-                messege: "Nickname already in use",
+                message: "Nickname already in use",
                 error: err
             })
         });
-    } else return res.status(400).json({messege: "Insufficient data to create user"})
+    } else return res.status(400).json({message: "Insufficient data to create user"})
 }
 
 const login = (req, res) => {
@@ -35,23 +35,23 @@ const login = (req, res) => {
                     expiresIn: 60 *60 * 24
                 })
                 res.status(200).json({
-                    messege: 'Users loged succesfully',
+                    message: 'Users loged succesfully',
                     data: usuario,
                     token: token
                 });
             } else {
                 res.status(401).json({
-                    messege: "Invalid Credentials"
+                    message: "Invalid Credentials"
                 });
             }
         })
         .catch((err) => 
             res.status(500).json({
-                messege: "Internal Server error on finding",
+                message: "Usuario no existente",
                 error: err
             })
         );
-    } else return res.status(400).json({ messege: "Nickname not recevied"})
+    } else return res.status(400).json({ message: "Nickname not recevied"})
 }
 
 module.exports = {create, login}
