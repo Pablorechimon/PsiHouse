@@ -9,12 +9,12 @@ const get = (req, res) => {
         'id_paciente' : id
     }).then((compartido) => {
     res.status(200).json({
-        message: 'Compartido retrieved successfully',
+        message: 'Compartidos devueltos correctamente',
         data: compartido,
     });
    }).catch((err) => {
     res.status(500).json({
-        message: "Internal Server Error while finding compartido",
+        message: "Internal Server Error while finding compartidos",
         error: err
     });
    });
@@ -28,7 +28,7 @@ const create = (req, res) => {
         });
         compartido.save().then(() => {
             res.status(201).json({
-                message: "Compartido created successfully",
+                message: "Compartido creado correctamente",
                 data: compartido,
             });
         })
@@ -38,28 +38,28 @@ const create = (req, res) => {
                 error: err
             })
         })
-    } else return res.status(400).json({ message: "Compartido not received"})
+    } else return res.status(501).json({ message: "Compartido no recibido"})
 }
 
 const editCompartido = (req, res) => {
     Compartido.findById(req.body._id).then((compartido) => {
         Object.assign(compartido, req.body);
         compartido.save().then(() => {
-            res.status(200).json({
-                message: "Compartido updated successfully",
+            res.status(201).json({
+                message: "Compartido Editado correctamente",
                 data: compartido
             });
         })
-        .catch((err) => {
-            return res.status(500).json({
-                message: "Internal Server error while saving",
-                error: err
-            })
-        });
+        // .catch((err) => {
+        //     return res.status(500).json({
+        //         message: "Internal Server error while saving",
+        //         error: err
+        //     })
+        // });
     })
     .catch((err) => {
-        return res.status(500).json({
-            message: "Internal Server error while saving",
+        return res.status(501).json({
+            message: "Falta Compartido ID",
             error: err
         })
     })

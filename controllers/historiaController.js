@@ -9,12 +9,12 @@ const get = (req, res) => {
     'id_paciente' : id
     }).then((historia) => {
         res.status(200).json({
-            message: 'Historias retrieved successfully',
+            message: 'Historias devueltas correctamente',
             data: historia,
         });
     }).catch((err) => {
         res.status(500).json({
-            message: "Internal Server Error while finding historia",
+            message: "Internal Server Error while finding historias",
             error: err
         });
     });
@@ -28,7 +28,7 @@ const create = (req, res) => {
         });
         historia.save().then(() => {
             res.status(201).json({
-                message: "Historia created successfully",
+                message: "Historia creada correctamente",
                 data: historia,
             });
         })
@@ -38,28 +38,28 @@ const create = (req, res) => {
                 error: err
             })
         })
-    } else return res.status(400).json({ message: "Historia not received"})
+    } else return res.status(501).json({ message: "Historia no recibida"})
 }
 
 const editHistoria = (req, res) => {
     Historias.findById(req.body._id).then((historia) => {
         Object.assign(historia, req.body);
         historia.save().then(() => {
-            res.status(200).json({
-                message: "Historia updated successfully",
+            res.status(201).json({
+                message: "Historia Editada correctamente",
                 data: historia
             });
         })
-        .catch((err) => {
-            return res.status(500).json({
-                message: "Internal Server error while saving",
-                error: err
-            })
-        });
+        // .catch((err) => {
+        //     return res.status(500).json({
+        //         message: "Internal Server error while saving",
+        //         error: err
+        //     })
+        // });
     })
     .catch((err) => {
-        return res.status(500).json({
-            message: "Internal Server error while saving",
+        return res.status(501).json({
+            message: "Falta Historia ID",
             error: err
         })
     })

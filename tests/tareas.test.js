@@ -22,7 +22,6 @@ describe("GET Tareas de Usuario Psicologx", () => {
   describe("GET Tareas de usuario no existente", () => {
     it("Debe retornar error de usuario no existente", async () => {
       const res = await request(app).get("/tareas/usuario/UsuarioNoExistente");
-      console.log(res._body.message)
       expect(res.statusCode).toBe(500);
       expect(res._body.message).toBe("Usuario no existente");
     });

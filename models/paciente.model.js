@@ -4,13 +4,13 @@ const Schema = mongoose.Schema;
 
 const PacienteSchema = Schema({
     id_usuario: {type: Schema.Types.ObjectId, ref: 'usuarios'},
-    DNI: String,
-    nombre: String,
-    apellido: String,
-    fecha_nacimiento: Date,
+    DNI: {type: String, required: true},
+    nombre: {type: String, required: true},
+    apellido: {type: String, required: true},
+    fecha_nacimiento: {type: String},
     fecha_inicio_tramite: { type: Date, default: Date.now },
     email: String,
-    telefono_personal: String,
+    telefono_personal: {type: String},
     telefono_tercero: String,
     localidad: String,
     personas_convivientes: String,

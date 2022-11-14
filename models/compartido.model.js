@@ -9,7 +9,7 @@ const RecursoSchema = Schema ({
 
 const CompartidoSchema = Schema({
     id_paciente: {type: Schema.Types.ObjectId, ref: 'pacientes'},
-    recurso: RecursoSchema,
+    recurso: {type: RecursoSchema, required: true},
     fecha: { type: Date, default: Date.now },
 })
 

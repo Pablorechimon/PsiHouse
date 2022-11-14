@@ -9,12 +9,12 @@ const get = (req, res) => {
         'id_paciente' : id
    }).then((conceptualizacion) => {
     res.status(200).json({
-        message: 'Conceptualizacion retrieved successfully',
+        message: 'Conceptualizaciones devueltas correctamente',
         data: conceptualizacion,
     });
    }).catch((err) => {
     res.status(500).json({
-        message: "Internal Server Error while finding conceptualizacion",
+        message: "Internal Server Error while finding conceptualizaciones",
         error: err
     });
    });
@@ -28,7 +28,7 @@ const create = (req, res) => {
         });
         conceptualizacion.save().then(() => {
             res.status(201).json({
-                message: "Conceptualizacion created successfully",
+                message: "Conceptualizacion creada correctamente",
                 data: conceptualizacion,
             });
         })
@@ -38,28 +38,28 @@ const create = (req, res) => {
                 error: err
             })
         })
-    } else return res.status(400).json({ message: "Conceptualizacion not received"})
+    } else return res.status(501).json({ message: "Conceptualizacion no recibida"})
 }
 
 const editConceptualizacion = (req, res) => {
     Conceptualizacion.findById(req.body._id).then((conceptualizacion) => {
         Object.assign(conceptualizacion, req.body);
         conceptualizacion.save().then(() => {
-            res.status(200).json({
-                message: "Conceptualizacion updated successfully",
+            res.status(201).json({
+                message: "Conceptualizacion Editada correctamente",
                 data: conceptualizacion
             });
         })
-        .catch((err) => {
-            return res.status(500).json({
-                message: "Internal Server error while saving",
-                error: err
-            })
-        });
+        // .catch((err) => {
+        //     return res.status(500).json({
+        //         message: "Internal Server error while saving",
+        //         error: err
+        //     })
+        // });
     })
     .catch((err) => {
-        return res.status(500).json({
-            message: "Internal Server error while saving",
+        return res.status(501).json({
+            message: "Falta Conceptualizacion ID",
             error: err
         })
     })
