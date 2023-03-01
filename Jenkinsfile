@@ -19,5 +19,13 @@ pipeline {
                 '''
             }
         }
+        stage ('Deploy-to-Node-Server'){
+            steps {
+                sshagent(['Node']){
+                    sh 'cd /home/pablorechimon/PsiHouse/PsiHouse'
+                    sh 'npm run dev'
+                }
+            }
+        }
     }
 }
