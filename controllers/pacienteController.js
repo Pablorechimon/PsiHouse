@@ -67,6 +67,16 @@ const create = async (req, res) => {
 
 const editPaciente = (req, res) => {
     id = req.params.id
+    if (req.body.tratamiento_finalizado == 'on'){
+        req.body.tratamiento_finalizado = true
+    } else if (!req.body.tratamiento_finalizado){
+        req.body.tratamiento_finalizado = false
+    }
+    if (req.body.riesgo_suicida == 'on'){
+        req.body.riesgo_suicida = true
+    } else if (!req.body.riesgo_suicida){
+        req.body.riesgo_suicida = false
+    }
     Paciente.findById(id).then((paciente) => {
         Object.assign(paciente, req.body);
         paciente.save().then(() => {
@@ -75,12 +85,12 @@ const editPaciente = (req, res) => {
                 data: paciente
             });
         })
-            // .catch((err) => {
-            //     return res.status(500).json({
-            //         message: "Internal Server error while saving",
-            //         error: err
-            //     })
-            // });
+            .catch((err) => {
+                return res.status(500).json({
+                    message: "Internal Server error while saving",
+                    error: err
+                })
+            });
     })
         .catch((err) => {
             return res.status(501).json({

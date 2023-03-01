@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1668384192989" clover="3.2.0">
-  <project timestamp="1668384192990" name="All files">
-    <metrics statements="302" coveredstatements="299" conditionals="45" coveredconditionals="44" methods="82" coveredmethods="80" elements="429" coveredelements="423" complexity="0" loc="302" ncloc="302" packages="4" files="26" classes="26"/>
+<coverage generated="1670199985475" clover="3.2.0">
+  <project timestamp="1670199985475" name="All files">
+    <metrics statements="311" coveredstatements="305" conditionals="53" coveredconditionals="49" methods="83" coveredmethods="80" elements="447" coveredelements="434" complexity="0" loc="311" ncloc="311" packages="4" files="26" classes="26"/>
     <package name="PsiHouse">
       <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="app.js" path="C:\Users\Pablo\Code-Workspace\PsiHouse\app.js">
@@ -19,7 +19,7 @@
       </file>
     </package>
     <package name="PsiHouse.controllers">
-      <metrics statements="184" coveredstatements="181" conditionals="45" coveredconditionals="44" methods="80" coveredmethods="78"/>
+      <metrics statements="193" coveredstatements="187" conditionals="53" coveredconditionals="49" methods="81" coveredmethods="78"/>
       <file name="compartidoController.js" path="C:\Users\Pablo\Code-Workspace\PsiHouse\controllers\compartidoController.js">
         <metrics statements="20" coveredstatements="20" conditionals="4" coveredconditionals="4" methods="10" coveredmethods="10"/>
         <line num="1" count="8" type="stmt"/>
@@ -113,7 +113,7 @@
         <line num="71" count="8" type="stmt"/>
       </file>
       <file name="pacienteController.js" path="C:\Users\Pablo\Code-Workspace\PsiHouse\controllers\pacienteController.js">
-        <metrics statements="32" coveredstatements="31" conditionals="6" coveredconditionals="6" methods="13" coveredmethods="12"/>
+        <metrics statements="41" coveredstatements="37" conditionals="14" coveredconditionals="11" methods="14" coveredmethods="12"/>
         <line num="1" count="8" type="stmt"/>
         <line num="2" count="8" type="stmt"/>
         <line num="4" count="8" type="stmt"/>
@@ -140,12 +140,21 @@
         <line num="63" count="1" type="stmt"/>
         <line num="68" count="8" type="stmt"/>
         <line num="69" count="2" type="stmt"/>
-        <line num="70" count="2" type="stmt"/>
-        <line num="71" count="1" type="stmt"/>
-        <line num="72" count="1" type="stmt"/>
+        <line num="70" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="72" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="73" count="1" type="stmt"/>
-        <line num="86" count="1" type="stmt"/>
-        <line num="94" count="8" type="stmt"/>
+        <line num="75" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="77" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="78" count="2" type="stmt"/>
+        <line num="80" count="2" type="stmt"/>
+        <line num="81" count="1" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="96" count="1" type="stmt"/>
+        <line num="104" count="8" type="stmt"/>
       </file>
       <file name="pagoController.js" path="C:\Users\Pablo\Code-Workspace\PsiHouse\controllers\pagoController.js">
         <metrics statements="29" coveredstatements="29" conditionals="6" coveredconditionals="5" methods="11" coveredmethods="11"/>
