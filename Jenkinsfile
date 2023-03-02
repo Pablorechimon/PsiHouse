@@ -21,7 +21,7 @@ pipeline {
         }
         stage ('Deploy-to-Node-Server'){
             steps {
-                sshagent(['Node']){
+                sshagent(['nodejs']){
                     sh 'npm --prefix /home/pablorechimon/PsiHouse/PsiHouse run dev'
                 }
             }
