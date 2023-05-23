@@ -27,3 +27,7 @@ jobs:
         run: echo '${{ toJSON(strategy) }}'
       - name: Dump matrix context
         run: echo '${{ toJSON(matrix) }}'
+      - name: Dump vars context
+        run: echo '${{ toJson(vars)}}'
+      - name: Dump env context
+        run: echo '${{ toJson(env)}}'
